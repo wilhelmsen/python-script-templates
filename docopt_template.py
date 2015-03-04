@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 """Usage:
     docopt_template.py command1 [options] <arg1> <arg2> ARG3 [--verbose|--debug]
     docopt_template.py command2 [options] <arg1> ARG2 <arg3> [--verbose|--debug]
