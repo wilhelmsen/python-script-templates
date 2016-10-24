@@ -36,20 +36,19 @@ if __name__ == "__main__":
         return datetime.datetime.strptime(date_string,
                                           '%Y-%m-%d').date()
 
-    def directory(dir_path):
-        if not os.path.isdir(dir_path):
+    def path(path):
+        if not os.path.isdir(path) and not os.path.isfile(path):
             raise argparse.ArgumentTypeError(
-                " ".join("'{}' does not exist.".format(dir_path),
-                         "Please specify save directory!"))
-        return dir_path
+                "'{}' does not exist.".format(path))
+        return path
 
     parser = argparse.ArgumentParser(description='Some description.')
     parser.add_argument('required_date',
                         type=string2date,
                         help='Required date...')
     parser.add_argument('--dir',
-                        type=directory,
-                        help='Some existing directory, if set (optional)...')
+                        type=path,
+                        help='Some existing path, if set (optional)...')
     parser.add_argument('--this-is-a-string-option',
                         type=str,
                         help="Some string.")
