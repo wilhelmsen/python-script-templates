@@ -39,8 +39,8 @@ if __name__ == "__main__":
     def directory(dir_path):
         if not os.path.isdir(dir_path):
             raise argparse.ArgumentTypeError(
-                " ".join("'{}' does not exist.",
-                         "Please specify save directory!".format(dir_path)))
+                " ".join("'{}' does not exist.".format(dir_path),
+                         "Please specify save directory!"))
         return dir_path
 
     parser = argparse.ArgumentParser(description='Some description.')
