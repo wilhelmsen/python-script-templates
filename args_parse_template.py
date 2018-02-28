@@ -9,13 +9,9 @@ import datetime
 LOG = logging.getLogger(__name__)
 
 
-class ScriptException(Exception):
-    pass
-
-
 def main():
     LOG.critical("Look at me!! Look at me!!")
-    raise NotImplementedError
+
 
 if __name__ == "__main__":
     # Uncomment if root privileges are required.
@@ -24,11 +20,11 @@ if __name__ == "__main__":
 
     try:
         import argparse
-    except Exception, e:
-        print ""
-        print "Try running 'sudo apt-get install python-argparse' or"
-        print "'sudo easy_install argparse'!!"
-        print ""
+    except Exception as e:
+        print("")
+        print("Try running 'sudo apt-get install python-argparse' or")
+        print("'sudo easy_install argparse'!!")
+        print("")
         raise e
 
     def string2date(date_string):
@@ -62,14 +58,21 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.debug:
-        logging.basicConfig(filename=args.log_filename,
-                            level=logging.DEBUG)
+        log_level = logging.DEBUG
     elif args.verbose:
-        logging.basicConfig(filename=args.log_filename,
-                            level=logging.INFO)
+        log_level = logging.INFO
     else:
-        logging.basicConfig(filename=args.log_filename,
-                            level=logging.WARNING)
+        log_level = logging.WARNING
+
+    log_format = " - ".join(["%(process)d",
+                             "%(asctime)s",
+                             "%(name)s",
+                             "%(levelname)s",
+                             "%(message)s"])
+
+    logging.basicConfig(filename=args.log_filename,
+                        level=log_level,
+                        format=log_format)
 
     # Output what is in the args variable.
     LOG.debug(args)
